@@ -64,3 +64,13 @@ This file records material prompts and AI-assisted decisions used to build Ledge
 **AI response/action summary**
 
 > Created a repository-local Cloudflare integration skill and human-readable account/token/secret/deployment guide. Added repository instructions requiring approval for consequential decisions and Cloudflare changes, a low-frequency sync approach, and notice at five commits ahead. Repository remote setup and initial synchronization are in progress.
+
+## 2026-09-17 — GitHub SSH authentication
+
+**User prompt (verbatim)**
+
+> Use the command line git and my existing .ssh identity.
+
+**AI response/action summary**
+
+> Changed the GitHub remote to its SSH URL, fetched it with the existing SSH identity, pushed the initial project commit, and set `main` to track `origin/main`.
