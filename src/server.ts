@@ -4,7 +4,7 @@ import { AgentWorkflow, type AgentWorkflowEvent, type AgentWorkflowStep } from "
 import { routeAgentRequest } from "agents";
 import { convertToModelMessages, stepCountIs, streamText, tool } from "ai";
 import { z } from "zod";
-import { investigateNorthstar, money, type Investigation } from "./billing";
+import { accounts, compareInvoices, money, type Investigation } from "./billing";
 
 type InvestigationStatus = "idle" | "investigating" | "complete" | "failed";
 
@@ -15,12 +15,10 @@ export type LedgerLensState = {
   error?: string;
 };
 
-type InvestigationPayload = {
-  accountName: "Northstar Analytics";
-  question: string;
-};
+type InvestigationPayload = { accountId: string; priorInvoiceId: string; currentInvoiceId: string; question: string; };
 
-const systemPrompt = `You are LedgerLens, a billing investigation copilot for human support agents. You work only with fictional, read-only account data. Do not promise refunds, make changes, or claim evidence that is not in the investigation. For a question about an invoice difference, call investigateInvoiceVariance before answering. After an investigation is complete, explain computed facts in plain language, cite evidence IDs, label uncertainty, and offer a customer-ready draft that a human must review before sending.`;
+const accountCatalog = accounts.map((account) => `${account.id}: ${account.name}; invoices ${account.invoices.map((invoice) => `${invoice.id} (${invoice.period})`).join(", ")}`).join("\n");
+const systemPrompt = `You are LedgerLens, a billing investigation copilot for human support agents. You work only with fictional, read-only account data. Do not promise refunds, make changes, or claim evidence that is not in the investigation. For a question about an invoice difference, call investigateInvoiceVariance before answering. Never mix accounts; use only the account and invoice IDs stated by the support agent. After an investigation is complete, explain computed facts in plain language, cite evidence IDs, label uncertainty, and offer a customer-ready draft that a human must review before sending.\n\nFixture catalog:\n${accountCatalog}`;
 
 export class LedgerLensAgent extends AIChatAgent<Env, LedgerLensState> {
   initialState: LedgerLensState = { status: "idle" };
@@ -36,15 +34,14 @@ export class LedgerLensAgent extends AIChatAgent<Env, LedgerLensState> {
       tools: {
         investigateInvoiceVariance: tool({
           description:
-            "Start a durable, read-only investigation of the Northstar Analytics invoice variance. Use for questions about invoice changes, usage, credits, or charge explanations.",
+            "Start a durable, read-only investigation for two invoices belonging to the same fictional account.",
           inputSchema: z.object({
-            question: z.string().min(1).describe("The support agent's billing question")
+            accountId: z.string(), priorInvoiceId: z.string(), currentInvoiceId: z.string(), question: z.string().min(1)
           }),
-          execute: async ({ question }) => {
+          execute: async ({ accountId, priorInvoiceId, currentInvoiceId, question }) => {
             await this.setState({ status: "investigating" });
             const instanceId = await this.runWorkflow("BILLING_INVESTIGATION", {
-              accountName: "Northstar Analytics",
-              question
+              accountId, priorInvoiceId, currentInvoiceId, question
             } satisfies InvestigationPayload);
             return {
               status: "started",
@@ -85,7 +82,7 @@ export class BillingInvestigationWorkflow extends AgentWorkflow<
     await step.updateAgentState({ status: "investigating" });
 
     const investigation = await step.do("retrieve-fixture-evidence", async () =>
-      investigateNorthstar(event.payload.question)
+      compareInvoices(event.payload.accountId, event.payload.priorInvoiceId, event.payload.currentInvoiceId, event.payload.question)
     );
 
     await this.reportProgress({

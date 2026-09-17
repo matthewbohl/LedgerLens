@@ -148,3 +148,17 @@ This file records material prompts and AI-assisted decisions used to build Ledge
 **AI response/action summary**
 
 > Added a requirements matrix, deterministic fixture test, and Playwright browser test for the deployed Worker. The live test submits only the fictional Northstar Analytics question and verifies chat submission, durable investigation state, invoice comparison, $510 variance, all evidence IDs, customer-ready draft, human-review boundary, and a completed result in under 10 seconds. The final live run passed in 9.1 seconds.
+
+## 2026-09-17 — More realistic account-scoped demo
+
+**User prompt (verbatim)**
+
+> Ok, lets expand the demo. Lets make it more realistic.. we need some sort of authentication page, even if its just static user/pw for this demonstration. It should then offer a list of accounts to review, and each account should have a number of invoices which can be compared by selecting any two invoices for the same customer at a time. It should be a drill down, so that you can't accidentally compare invoices across different accounts.
+
+**User clarification (verbatim)**
+
+> the credentials as suggested are fine. and yers, create multiple additional fictional customer accounts and invoices. Base the expenses on real or plausible cloud-flare offerings.
+
+**AI response/action summary**
+
+> Implemented a demo-only static sign-in using the approved credentials, three fictional customer accounts, and three Cloudflare-style invoices per account. The account-first UI resets invoice choices whenever the account changes, so both selectable invoice controls are always scoped to the selected account. The workflow comparison accepts account and invoice IDs and rejects an invoice that does not belong to that account. Local fixture tests, TypeScript validation, and the production build passed; deployment remains pending approval.
