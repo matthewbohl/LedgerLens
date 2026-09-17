@@ -138,3 +138,13 @@ This file records material prompts and AI-assisted decisions used to build Ledge
 **AI response/action summary**
 
 > Confirmed the authenticated Cloudflare account and deployed `ledgerlens` with an encrypted `OPENAI_API_KEY` secret, a SQLite-backed Durable Object, and the `billing-investigation` Workflow. A deployed fictional-data chat completed end-to-end: the Agent invoked the Workflow, the Workflow retrieved the fixture evidence and called GPT-5.6 Luna, and the browser displayed the computed $510 variance, evidence IDs, human-review boundary, and customer-ready draft. A first deployment exposed an Agent SDK release mismatch; the deployed correction uses `agents` 0.22.0, which passes type and production-build validation with the current `@cloudflare/ai-chat` package. No real customer data, billing change, or customer communication was performed.
+
+## 2026-09-17 — Requirements-driven live test suite
+
+**User prompt (verbatim)**
+
+> Ok, before we do that, lets generate a test suite, include functional requirements, for example, "explains differences in the two invoices" as well as non-function "returns a result in less than 10 seconds". Build a suite, then run the test suite against the live application.
+
+**AI response/action summary**
+
+> Added a requirements matrix, deterministic fixture test, and Playwright browser test for the deployed Worker. The live test submits only the fictional Northstar Analytics question and verifies chat submission, durable investigation state, invoice comparison, $510 variance, all evidence IDs, customer-ready draft, human-review boundary, and a completed result in under 10 seconds. The final live run passed in 9.1 seconds.

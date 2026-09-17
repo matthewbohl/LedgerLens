@@ -7,7 +7,7 @@
 | 1. Choose a project | Complete | **LedgerLens Support Copilot**: a chat-first, human-in-the-loop billing investigation tool for support agents. |
 | 2. Structure workspace and delivery team | Complete | Delivery roles, project-local Cloudflare skill, local secret handling, and the `ledgerlens` / `gpt-5.6-luna` application scaffold are in place. |
 | 3. Validate the design | Complete | Verified the four assignment components, server-side model handling, and the proposed demo against local and deployed evidence. |
-| 4. Implement and test | Complete | Deployed `ledgerlens`; completed a fictional-data browser chat, Workflow, Durable Object state, and customer-draft happy path; added fixture reconciliation coverage. |
+| 4. Implement and test | Complete | Deployed `ledgerlens`; completed a fictional-data browser chat, Workflow, Durable Object state, and customer-draft happy path; added fixture reconciliation coverage and a live requirements suite. |
 | 5. Submit | Not started | Package the repository, demo URL, architecture notes, and prompt history with the application. |
 
 > **Status:** The project and chat-first scope are approved. Voice input is a later enhancement, after the chat path works.
