@@ -104,3 +104,13 @@ This file records material prompts and AI-assisted decisions used to build Ledge
 **AI response/action summary**
 
 > Standardized the ignored local secret binding to `OPENAI_API_KEY` without reading its value. Reviewed Cloudflare's current Agents starter and generated it only in an isolated temporary directory for inspection. Chose not to copy its unrelated Workers AI demo features into LedgerLens; the approved implementation will use a focused React/TypeScript chat UI, Agent-backed SQLite state, a Workflow, and the external OpenAI API. No Cloudflare resource was created or deployed.
+
+## 2026-09-17 — Worker and model choice
+
+**User prompt (verbatim)**
+
+> 1 yes, 2, we'll use GPT-5.6 Luna
+
+**AI response/action summary**
+
+> Confirmed `ledgerlens` as the Worker name and `gpt-5.6-luna` as the API model identifier through official OpenAI documentation. Created the initial local React/TypeScript scaffold with a Cloudflare AIChatAgent using SQLite-backed Durable Object state, a Workflow for invoice-variance investigation, fictional Northstar Analytics evidence, and server-side-only OpenAI calls. Installed dependencies, generated Wrangler binding types, and passed the TypeScript check and production build. No OpenAI request, Cloudflare resource creation, or deployment occurred.

@@ -5,8 +5,8 @@
 | Step | Status | Outcome |
 | --- | --- | --- |
 | 1. Choose a project | Complete | **LedgerLens Support Copilot**: a chat-first, human-in-the-loop billing investigation tool for support agents. |
-| 2. Structure workspace and delivery team | In progress | Local Cloudflare/OpenAI access is ready. React + TypeScript, an Agent/SQLite Durable Object, and a Workflow are approved; define the delivery roles and confirm the Worker name/model before application files are created. |
-| 3. Validate the design | Not started | Verify every assignment component and acceptance criterion. |
+| 2. Structure workspace and delivery team | Complete | Delivery roles, project-local Cloudflare skill, local secret handling, and the `ledgerlens` / `gpt-5.6-luna` application scaffold are in place. |
+| 3. Validate the design | In progress | Verify every assignment component and acceptance criterion against the scaffold before live-model or deployment testing. |
 | 4. Implement and test | Not started | Build, test locally, deploy, and exercise the primary demo. |
 | 5. Submit | Not started | Package the repository, demo URL, architecture notes, and prompt history with the application. |
 
@@ -80,6 +80,13 @@ Investigation Workflow
 ```
 
 The Agent supplies the real-time support chat and durable per-investigation state; the Workflow makes the multi-step investigation retryable and reports durable progress back to the Agent. This division matches Cloudflare's current guidance: Agents manage interactive communication/state, while Workflows provide durable multi-step work with retries.
+
+## Approved implementation configuration
+
+- **Worker name:** `ledgerlens` (a local configuration value; no Worker has been deployed or created).
+- **Model:** `gpt-5.6-luna`, called through the OpenAI Responses API from Worker code only.
+- **Local secret name:** `OPENAI_API_KEY` in ignored `.dev.vars`.
+- **Initial fixture account:** Northstar Analytics, fictional and read-only.
 
 ## Explicit assignment mapping
 
