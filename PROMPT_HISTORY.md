@@ -114,3 +114,17 @@ This file records material prompts and AI-assisted decisions used to build Ledge
 **AI response/action summary**
 
 > Confirmed `ledgerlens` as the Worker name and `gpt-5.6-luna` as the API model identifier through official OpenAI documentation. Created the initial local React/TypeScript scaffold with a Cloudflare AIChatAgent using SQLite-backed Durable Object state, a Workflow for invoice-variance investigation, fictional Northstar Analytics evidence, and server-side-only OpenAI calls. Installed dependencies, generated Wrangler binding types, and passed the TypeScript check and production build. No OpenAI request, Cloudflare resource creation, or deployment occurred.
+
+## 2026-09-17 — Local end-to-end validation approval
+
+**User prompt (verbatim)**
+
+> ok, lets move forward
+
+**AI response/action summary**
+
+> Proceeding with one local end-to-end investigation against the configured OpenAI API key. This will validate the chat-first prototype without deploying or changing Cloudflare account resources.
+
+**Validation outcome**
+
+> The OpenAI Responses request completed successfully with GPT-5.6 Luna and `store: false`. Validation found that the raw response provides text in `output[].content[]`; the Workflow parser was corrected accordingly. TypeScript validation and the production build passed afterward. Browser access to the isolated local Worker process could not be exercised from this environment, and no Cloudflare deployment occurred.

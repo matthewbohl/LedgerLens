@@ -124,9 +124,17 @@ export class BillingInvestigationWorkflow extends AgentWorkflow<
         throw new Error(`OpenAI request failed with status ${response.status}`);
       }
 
-      const payload = (await response.json()) as { output_text?: string };
-      if (!payload.output_text) throw new Error("OpenAI returned no text output");
-      return payload.output_text;
+      const payload = (await response.json()) as {
+        output?: Array<{
+          type?: string;
+          content?: Array<{ type?: string; text?: string }>;
+        }>;
+      };
+      const customerDraft = payload.output
+        ?.flatMap((item) => item.content ?? [])
+        .find((item) => item.type === "output_text")?.text;
+      if (!customerDraft) throw new Error("OpenAI returned no text output");
+      return customerDraft;
     });
 
     await step.do("persist-investigation", async () => {
