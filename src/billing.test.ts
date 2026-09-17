@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { compareInvoices, investigateNorthstar } from "./billing";
+import { accounts, compareInvoices, investigateNorthstar } from "./billing";
 
 describe("Northstar invoice investigation", () => {
   it("reconciles the September variance to evidence-backed drivers", () => {
@@ -17,5 +17,9 @@ describe("Northstar invoice investigation", () => {
     expect(() => compareInvoices("northstar", "inv-aug-1042", "inv-sep-2144", "Compare invoices")).toThrow(
       "Invoices must belong to the selected account"
     );
+  });
+
+  it("provides eight invoices for each fictional account", () => {
+    expect(accounts.map((account) => account.invoices.length)).toEqual([8, 8, 8]);
   });
 });

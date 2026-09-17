@@ -18,6 +18,21 @@ export const accounts: Account[] = [
     invoice("inv-sep-3099", "September 2026", 231000, [{ label: "Workers requests and CPU", amountCents: 98000, note: "Seasonal storefront traffic." }, { label: "R2 storage and operations", amountCents: 34000, note: "Product assets." }, { label: "Bot Management", amountCents: 74000, note: "Automated traffic protection." }, { label: "Rate Limiting usage", amountCents: 25000, note: "Checkout protection during promotion." }]),
     invoice("inv-oct-3152", "October 2026", 207000, [{ label: "Workers requests and CPU", amountCents: 86000, note: "Storefront edge logic." }, { label: "R2 storage and operations", amountCents: 35000, note: "Product assets." }, { label: "Bot Management", amountCents: 74000, note: "Automated traffic protection." }, { label: "Rate Limiting usage", amountCents: 12000, note: "Checkout protection." }]) ] }
 ];
+
+const addFiveInvoices = (accountId: string, prefix: string, totals: number[], labels: [string, string, string]) => {
+  const account = accounts.find((item) => item.id === accountId)!;
+  ["November 2026", "December 2026", "January 2027", "February 2027", "March 2027"].forEach((period, index) => {
+    const total = totals[index]; const first = Math.round(total * 0.5); const second = Math.round(total * 0.3);
+    account.invoices.push(invoice(`inv-${prefix}-${index + 1}`, period, total, [
+      { label: labels[0], amountCents: first, note: `${period} metered service usage.` },
+      { label: labels[1], amountCents: second, note: `${period} consumption and operations.` },
+      { label: labels[2], amountCents: total - first - second, note: `${period} account service usage.` }
+    ]));
+  });
+};
+addFiveInvoices("northstar", "n", [168000, 181000, 176000, 194000, 188000], ["Workers requests and CPU", "R2 storage and operations", "Argo Smart Routing"]);
+addFiveInvoices("harbor", "h", [258000, 322000, 281000, 304000, 337000], ["Stream video delivery", "Stream video stored", "Images transformations"]);
+addFiveInvoices("sundial", "s", [226000, 289000, 241000, 276000, 318000], ["Workers requests and CPU", "R2 storage and operations", "Bot Management and Rate Limiting"]);
 export function getAccount(id: string) { const account = accounts.find((item) => item.id === id); if (!account) throw new Error("Unknown fictional account"); return account; }
 export function compareInvoices(accountId: string, priorId: string, currentId: string, question: string): Investigation {
   const account = getAccount(accountId); const prior = account.invoices.find((item) => item.id === priorId); const current = account.invoices.find((item) => item.id === currentId); if (!prior || !current) throw new Error("Invoices must belong to the selected account");
