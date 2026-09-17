@@ -74,3 +74,13 @@ This file records material prompts and AI-assisted decisions used to build Ledge
 **AI response/action summary**
 
 > Changed the GitHub remote to its SSH URL, fetched it with the existing SSH identity, pushed the initial project commit, and set `main` to track `origin/main`.
+
+## 2026-09-17 — Consolidated environment prerequisites
+
+**User prompt (verbatim)**
+
+> node LTS (24) is installed now. Are there any other dependencies that must be met that I can take care of? I don't want to go back and forth one step at a time.
+
+**AI response/action summary**
+
+> Checked the local environment and Cloudflare/OpenAI prerequisites. Found Node 24 installed through Homebrew but not in the shell PATH because the versioned formula is keg-only. Added a consolidated prerequisite section to the Cloudflare setup guide and will provide the remaining one-time account, authentication, and API-key checklist.

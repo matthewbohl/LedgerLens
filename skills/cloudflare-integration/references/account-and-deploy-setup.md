@@ -2,6 +2,20 @@
 
 This is a user-facing checklist for LedgerLens. Complete only the steps you choose to authorize. Share neither Cloudflare nor OpenAI secrets in chat or in this repository.
 
+## 0. Local prerequisites
+
+- Node.js 24 LTS and npm. Confirm with `node --version` and `npm --version`.
+- Git with GitHub SSH authentication (already configured for this repository).
+- A current browser for the local chat UI and the Cloudflare/OpenAI dashboard flows.
+
+If Homebrew installed the versioned `node@24` formula, it is keg-only. Make it available in new zsh sessions with:
+
+```sh
+echo 'export PATH="/opt/homebrew/opt/node@24/bin:$PATH"' >> ~/.zshrc
+```
+
+Open a new terminal and run `node --version` again. Wrangler will be installed locally as a project dependency; no global Wrangler installation is needed.
+
 ## 1. Create or select a Cloudflare account
 
 1. Sign in to [Cloudflare](https://dash.cloudflare.com/sign-up) or create an account.
