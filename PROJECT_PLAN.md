@@ -5,7 +5,7 @@
 | Step | Status | Outcome |
 | --- | --- | --- |
 | 1. Choose a project | Complete | **LedgerLens Support Copilot**: a chat-first, human-in-the-loop billing investigation tool for support agents. |
-| 2. Structure workspace and delivery team | In progress | Repository remote and project-local Cloudflare integration skill are being established; implementation/validation roles still require a proposed plan and approval. |
+| 2. Structure workspace and delivery team | In progress | Local Cloudflare/OpenAI access is ready. React + TypeScript, an Agent/SQLite Durable Object, and a Workflow are approved; define the delivery roles and confirm the Worker name/model before application files are created. |
 | 3. Validate the design | Not started | Verify every assignment component and acceptance criterion. |
 | 4. Implement and test | Not started | Build, test locally, deploy, and exercise the primary demo. |
 | 5. Submit | Not started | Package the repository, demo URL, architecture notes, and prompt history with the application. |

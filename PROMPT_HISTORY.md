@@ -94,3 +94,13 @@ This file records material prompts and AI-assisted decisions used to build Ledge
 **AI response/action summary**
 
 > Began local readiness verification without displaying secrets. Node 24 is installed but must be explicitly included in non-interactive command PATHs. Found `.dev.vars` present with a single key named `OPEN_API_KEY`; added a Git ignore rule before scaffolding so the local secret cannot be committed. The application configuration must either standardize the local key name to `OPENAI_API_KEY` or explicitly use `OPEN_API_KEY`; this has not yet been chosen.
+
+## 2026-09-17 — Initial application scaffold approval
+
+**User prompt (verbatim)**
+
+> Yes for both.
+
+**AI response/action summary**
+
+> Standardized the ignored local secret binding to `OPENAI_API_KEY` without reading its value. Reviewed Cloudflare's current Agents starter and generated it only in an isolated temporary directory for inspection. Chose not to copy its unrelated Workers AI demo features into LedgerLens; the approved implementation will use a focused React/TypeScript chat UI, Agent-backed SQLite state, a Workflow, and the external OpenAI API. No Cloudflare resource was created or deployed.
