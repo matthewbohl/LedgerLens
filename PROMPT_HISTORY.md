@@ -84,3 +84,13 @@ This file records material prompts and AI-assisted decisions used to build Ledge
 **AI response/action summary**
 
 > Checked the local environment and Cloudflare/OpenAI prerequisites. Found Node 24 installed through Homebrew but not in the shell PATH because the versioned formula is keg-only. Added a consolidated prerequisite section to the Cloudflare setup guide and will provide the remaining one-time account, authentication, and API-key checklist.
+
+## 2026-09-17 — Cloudflare and OpenAI development access
+
+**User prompt (verbatim)**
+
+> ok, I fixed the environment issue, I used npx wrangler login for my matthewbohl\@gmail.com cloudflare account. The OpenAI API key is also available in .dev.vars.
+
+**AI response/action summary**
+
+> Began local readiness verification without displaying secrets. Node 24 is installed but must be explicitly included in non-interactive command PATHs. Found `.dev.vars` present with a single key named `OPEN_API_KEY`; added a Git ignore rule before scaffolding so the local secret cannot be committed. The application configuration must either standardize the local key name to `OPENAI_API_KEY` or explicitly use `OPEN_API_KEY`; this has not yet been chosen.

@@ -1,0 +1,11 @@
+# Local secrets: never commit these files.
+.dev.vars
+.env
+.env.*
+!.env.example
+
+# Local tooling output.
+node_modules/
+.wrangler/
+dist/
+coverage/
