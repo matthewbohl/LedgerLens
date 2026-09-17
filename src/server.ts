@@ -25,7 +25,6 @@ const systemPrompt = `You are LedgerLens, a billing investigation copilot for hu
 export class LedgerLensAgent extends AIChatAgent<Env, LedgerLensState> {
   initialState: LedgerLensState = { status: "idle" };
   maxPersistedMessages = 50;
-  chatRecovery = true;
 
   async onChatMessage(_onFinish: unknown, options?: OnChatMessageOptions) {
     const openai = createOpenAI({ apiKey: this.env.OPENAI_API_KEY });

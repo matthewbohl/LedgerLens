@@ -128,3 +128,13 @@ This file records material prompts and AI-assisted decisions used to build Ledge
 **Validation outcome**
 
 > The OpenAI Responses request completed successfully with GPT-5.6 Luna and `store: false`. Validation found that the raw response provides text in `output[].content[]`; the Workflow parser was corrected accordingly. TypeScript validation and the production build passed afterward. Browser access to the isolated local Worker process could not be exercised from this environment, and no Cloudflare deployment occurred.
+
+## 2026-09-17 — Deploy and validate LedgerLens
+
+**User prompt (verbatim)**
+
+> Make it so.
+
+**AI response/action summary**
+
+> Confirmed the authenticated Cloudflare account and deployed `ledgerlens` with an encrypted `OPENAI_API_KEY` secret, a SQLite-backed Durable Object, and the `billing-investigation` Workflow. A deployed fictional-data chat completed end-to-end: the Agent invoked the Workflow, the Workflow retrieved the fixture evidence and called GPT-5.6 Luna, and the browser displayed the computed $510 variance, evidence IDs, human-review boundary, and customer-ready draft. A first deployment exposed an Agent SDK release mismatch; the deployed correction uses `agents` 0.22.0, which passes type and production-build validation with the current `@cloudflare/ai-chat` package. No real customer data, billing change, or customer communication was performed.

@@ -7,13 +7,16 @@
     "dev": "vite dev",
     "build": "vite build",
     "check": "tsc --noEmit",
+    "test": "vitest run",
     "types": "wrangler types env.d.ts",
     "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
     "@ai-sdk/openai": "^2.0.0",
     "@cloudflare/ai-chat": "^0.9.3",
-    "agents": "^0.17.4",
+    "@cloudflare/codemode": "^0.5.2",
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "agents": "^0.22.0",
     "ai": "^6.0.197",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
@@ -27,6 +30,7 @@
     "@vitejs/plugin-react": "^6.0.3",
     "typescript": "^6.0.3",
     "vite": "^8.1.0",
+    "vitest": "^4.0.0",
     "wrangler": "^4.113.0"
   }
 }

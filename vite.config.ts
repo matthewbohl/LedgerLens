@@ -3,6 +3,6 @@ import react from "@vitejs/plugin-react";
 import agents from "agents/vite";
 import { defineConfig } from "vite";
 
-export default defineConfig({
-  plugins: [agents(), react(), cloudflare()]
-});
+export default defineConfig(({ mode }) => ({
+  plugins: [agents(), react(), ...(mode === "test" ? [] : [cloudflare()])]
+}));
